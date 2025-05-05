@@ -1,3 +1,7 @@
+# default
+maintain/
+node_modules/
+
 # App files
 pykms_logserver.log*
 pykms_logclient.log*

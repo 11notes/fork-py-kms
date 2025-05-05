@@ -39,7 +39,10 @@ def sql_initialize(dbName):
                 try:
                         con = sqlite3.connect(dbName)
                         cur = con.cursor()
-                        cur.execute("ALTER TABLE clients ADD COLUMN machineIp TEXT")
+                        columns = [i[1] for i in cur.execute('PRAGMA table_info(clients)')]
+                        if 'machineIp' not in columns:
+                                cur.execute("ALTER TABLE clients ADD COLUMN machineIp TEXT")
+                        
 
                 except sqlite3.Error as e:
                         pretty_printer(log_obj = loggersrv.debug, to_exit = False, put_text = "{reverse}Sqlite Error: %s.{end}" %str(e))
