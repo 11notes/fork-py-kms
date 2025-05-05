@@ -197,10 +197,12 @@ could be detected as not genuine !{end}" %currentClientCount)
                         "skuId" : skuName,
                         "licenseStatus" : kmsRequest.getLicenseStatus(),
                         "requestTime" : int(time.time()),
-                        "kmsEpid" : None
+                        "kmsEpid" : None,
+                        "machineIp"  : self.srv_config['raddr']
                 }
 
                 loggersrv.info("Machine Name: %s" % infoDict["machineName"])
+                loggersrv.info("Machine IP: %s" % infoDict["machineIp"])
                 loggersrv.info("Client Machine ID: %s" % infoDict["clientMachineId"])
                 loggersrv.info("Application ID: %s" % infoDict["appId"])
                 loggersrv.info("SKU ID: %s" % infoDict["skuId"])
@@ -208,7 +210,7 @@ could be detected as not genuine !{end}" %currentClientCount)
                 loggersrv.info("Request Time: %s" % local_dt.strftime('%Y-%m-%d %H:%M:%S %Z (UTC%z)'))
                 
                 if self.srv_config['loglevel'] == 'MININFO':
-                        loggersrv.mininfo("", extra = {'host': str(self.srv_config['raddr']),
+                        loggersrv.mininfo("", extra = {'host': self.srv_config['raddr'],
                                                        'status' : infoDict["licenseStatus"],
                                                        'product' : infoDict["skuId"]})
                 # Create database.

@@ -24,21 +24,38 @@ def sql_initialize(dbName):
                 try:
                         con = sqlite3.connect(dbName)
                         cur = con.cursor()
-                        cur.execute("CREATE TABLE clients(clientMachineId TEXT , machineName TEXT, applicationId TEXT, skuId TEXT, licenseStatus TEXT, lastRequestTime INTEGER, kmsEpid TEXT, requestCount INTEGER, PRIMARY KEY(clientMachineId, applicationId))")
+                        cur.execute("CREATE TABLE clients(clientMachineId TEXT , machineName TEXT, applicationId TEXT, skuId TEXT, licenseStatus TEXT, lastRequestTime INTEGER, kmsEpid TEXT, requestCount INTEGER, machineIp TEXT, PRIMARY KEY(clientMachineId, applicationId))")
 
                 except sqlite3.Error as e:
                         pretty_printer(log_obj = loggersrv.error, to_exit = True, put_text = "{reverse}{red}{bold}Sqlite Error: %s. Exiting...{end}" %str(e))
                 finally:
                         if con:
                                 con.commit()
+                                con.close()                                
+        else:
+                # Update the database.
+                loggersrv.debug(f'Updating database file "{dbName}"...')
+                con = None
+                try:
+                        con = sqlite3.connect(dbName)
+                        cur = con.cursor()
+                        cur.execute("ALTER TABLE clients ADD COLUMN machineIp TEXT")
+
+                except sqlite3.Error as e:
+                        pretty_printer(log_obj = loggersrv.debug, to_exit = False, put_text = "{reverse}Sqlite Error: %s.{end}" %str(e))
+                finally:
+                        if con:
+                                con.commit()
                                 con.close()
+                                
+
 
 def sql_get_all(dbName):
         if not os.path.isfile(dbName):
                 return None
         with sqlite3.connect(dbName) as con:
                 cur = con.cursor()
-                cur.execute("SELECT * FROM clients")
+                cur.execute("SELECT * FROM clients ORDER BY lastRequestTime DESC")
                 clients = []
                 for row in cur.fetchall():
                         clients.append({
@@ -49,7 +66,8 @@ def sql_get_all(dbName):
                                 'licenseStatus': row[4],
                                 'lastRequestTime': datetime.datetime.fromtimestamp(row[5]).isoformat(),
                                 'kmsEpid': row[6],
-                                'requestCount': row[7]
+                                'requestCount': row[7],
+                                'machineIp': row[8],
                         })
                 return clients
 
@@ -64,7 +82,7 @@ def sql_update(dbName, infoDict):
                         if not data:
                                 # Insert row.
                                 cur.execute("INSERT INTO clients (clientMachineId, machineName, applicationId, \
-skuId, licenseStatus, lastRequestTime, requestCount) VALUES (:clientMachineId, :machineName, :appId, :skuId, :licenseStatus, :requestTime, 1);", infoDict)
+skuId, licenseStatus, lastRequestTime, requestCount, machineIp) VALUES (:clientMachineId, :machineName, :appId, :skuId, :licenseStatus, :requestTime, 1, :machineIp);", infoDict)
                         else:
                                 # Update data.
                                 if data[1] != infoDict["machineName"]:
@@ -81,6 +99,9 @@ clientMachineId=:clientMachineId AND applicationId=:appId;", infoDict)
 clientMachineId=:clientMachineId AND applicationId=:appId;", infoDict)
                                 if data[5] != infoDict["requestTime"]:
                                         cur.execute("UPDATE clients SET lastRequestTime=:requestTime WHERE \
+clientMachineId=:clientMachineId AND applicationId=:appId;", infoDict)
+                                if data[8] != infoDict["machineIp"]:
+                                        cur.execute("UPDATE clients SET machineIp=:machineIp WHERE \
 clientMachineId=:clientMachineId AND applicationId=:appId;", infoDict)
                                 # Increment requestCount
                                 cur.execute("UPDATE clients SET requestCount=requestCount+1 WHERE \
