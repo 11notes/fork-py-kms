@@ -162,8 +162,6 @@ could be detected as not genuine !{end}" %currentClientCount)
                         # fixed to 10 (product server) or 50 (product desktop)
                         currentClientCount = RequiredClients     
                 """
-                
-                currentClientCount = kmsRequest['requiredClientCount']
                         
                 # Get a name for SkuId, AppId.        
                 kmsdb = kmsDB2Dict()
@@ -219,9 +217,9 @@ could be detected as not genuine !{end}" %currentClientCount)
                 if self.srv_config['sqlite']:
                         sql_update(self.srv_config['sqlite'], infoDict)
 
-                return self.createKmsResponse(kmsRequest, currentClientCount, appName)
+                return self.createKmsResponse(kmsRequest, appName)
 
-        def createKmsResponse(self, kmsRequest, currentClientCount, appName):
+        def createKmsResponse(self, kmsRequest, appName):
                 response = self.kmsResponseStruct()
                 response['versionMinor'] = kmsRequest['versionMinor']
                 response['versionMajor'] = kmsRequest['versionMajor']
@@ -235,7 +233,7 @@ could be detected as not genuine !{end}" %currentClientCount)
                 response['clientMachineId'] = kmsRequest['clientMachineId']
                 # rule: timeserver - 4h <= timeclient <= timeserver + 4h, check if is satisfied (TODO).
                 response['responseTime'] = kmsRequest['requestTime']
-                response['currentClientCount'] = currentClientCount
+                response['currentClientCount'] = kmsRequest['requiredClientCount']
                 response['vLActivationInterval'] = self.srv_config["activation"]
                 response['vLRenewalInterval'] = self.srv_config["renewal"]
 
