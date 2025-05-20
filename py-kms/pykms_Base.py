@@ -136,11 +136,11 @@ class kmsBase:
                     loggersrv.warning('Okay, something went horribly wrong while localizing the request time (proceeding anyways): ' + str(e))
                     local_dt = requestDatetime
                     pass
-
+                """
                 # Activation threshold.
                 # https://docs.microsoft.com/en-us/windows/deployment/volume-activation/activate-windows-10-clients-vamt                
-                MinClients = kmsRequest['requiredClientCount'] 
-                RequiredClients = MinClients * 2
+                MinClients = kmsRequest['requiredClientCount']
+                RequiredClients = MinClients
                 if self.srv_config["clientcount"] != None:
                         if 0 < self.srv_config["clientcount"] < MinClients:
                                 # fixed to 6 (product server) or 26 (product desktop)
@@ -161,7 +161,9 @@ could be detected as not genuine !{end}" %currentClientCount)
                 else:
                         # fixed to 10 (product server) or 50 (product desktop)
                         currentClientCount = RequiredClients     
-
+                """
+                
+                currentClientCount = kmsRequest['requiredClientCount']
                         
                 # Get a name for SkuId, AppId.        
                 kmsdb = kmsDB2Dict()
