@@ -115,8 +115,8 @@
 			<Activate KmsItem="ef6cfc9f-8c5d-44ac-9aad-de6a2ea0ae03" />
 		</CsvlkItem>
 
-		<CsvlkItem DisplayName="Windows Server 2022 Standard" VlmcsdIndex="0" GroupId="206" MinKeyId="551000000" MaxKeyId="570999999" IniFileName="Windows" Id="de32eafd-aaee-4662-9444-c1befb41bde2" InvalidWinBuild="[0,1,2]">
-			<Activate KmsItem="de32eafd-aaee-4662-9444-c1befb41bde2" />
+		<CsvlkItem DisplayName="Windows Server 2022 Standard" VlmcsdIndex="0" GroupId="206" MinKeyId="551000000" MaxKeyId="570999999" IniFileName="Windows" Id="9bd77860-9b31-4b7b-96ad-2564017315bf" InvalidWinBuild="[0,1,2]">
+			<Activate KmsItem="9bd77860-9b31-4b7b-96ad-2564017315bf" />
 		</CsvlkItem>
 		
 		<CsvlkItem DisplayName="Windows Server 2019" VlmcsdIndex="0" GroupId="206" MinKeyId="551000000" MaxKeyId="570999999" IniFileName="Windows" EPid="06401-00206-566-174993-03-1033-9600.0000-2802018" Id="2e7a9ad1-a849-4b56-babe-17d5a29fe4b4" InvalidWinBuild="[0,1,2]">
@@ -596,8 +596,8 @@
 				<SkuItem DisplayName="Windows Server 2022 Datacenter" Id="ef6cfc9f-8c5d-44ac-9aad-de6a2ea0ae03" Gvlk="WX4NM-KYWYW-QJJR4-XV3QB-6VM33" />
 			</KmsItem>
 
-			<KmsItem DisplayName="Windows Server 2022 Standard" Id="de32eafd-aaee-4662-9444-c1befb41bde2" DefaultKmsProtocol="6.0" NCountPolicy="5">
-				<SkuItem DisplayName="Windows Server 2022 Standard" Id="de32eafd-aaee-4662-9444-c1befb41bde2" Gvlk="VDYBN-27WPP-V4HQT-9VMD4-VMK7H" />
+			<KmsItem DisplayName="Windows Server 2022 Standard" Id="9bd77860-9b31-4b7b-96ad-2564017315bf" DefaultKmsProtocol="6.0" NCountPolicy="5">
+				<SkuItem DisplayName="Windows Server 2022 Standard" Id="9bd77860-9b31-4b7b-96ad-2564017315bf" Gvlk="VDYBN-27WPP-V4HQT-9VMD4-VMK7H" />
 			</KmsItem>			
 			
 			<KmsItem DisplayName="Windows Server 2019" Id="8449b1fb-f0ea-497a-99ab-66ca96e9a0f5" DefaultKmsProtocol="6.0" NCountPolicy="5">
