@@ -136,32 +136,6 @@ class kmsBase:
                     loggersrv.warning('Okay, something went horribly wrong while localizing the request time (proceeding anyways): ' + str(e))
                     local_dt = requestDatetime
                     pass
-                """
-                # Activation threshold.
-                # https://docs.microsoft.com/en-us/windows/deployment/volume-activation/activate-windows-10-clients-vamt                
-                MinClients = kmsRequest['requiredClientCount']
-                RequiredClients = MinClients
-                if self.srv_config["clientcount"] != None:
-                        if 0 < self.srv_config["clientcount"] < MinClients:
-                                # fixed to 6 (product server) or 26 (product desktop)
-                                currentClientCount = MinClients + 1
-                                pretty_printer(log_obj = loggersrv.warning,
-                                               put_text = "{reverse}{yellow}{bold}Not enough clients ! Fixed with %s, but activated client \
-could be detected as not genuine !{end}" %currentClientCount)
-                        elif MinClients <= self.srv_config["clientcount"] < RequiredClients:
-                                currentClientCount = self.srv_config["clientcount"]
-                                pretty_printer(log_obj = loggersrv.warning,
-                                               put_text = "{reverse}{yellow}{bold}With count = %s, activated client could be detected as not genuine !{end}" %currentClientCount)
-                        elif self.srv_config["clientcount"] >= RequiredClients:
-                                # fixed to 10 (product server) or 50 (product desktop)
-                                currentClientCount = RequiredClients
-                                if self.srv_config["clientcount"] > RequiredClients:
-                                        pretty_printer(log_obj = loggersrv.warning,
-                                                       put_text = "{reverse}{yellow}{bold}Too many clients ! Fixed with %s{end}" %currentClientCount)
-                else:
-                        # fixed to 10 (product server) or 50 (product desktop)
-                        currentClientCount = RequiredClients     
-                """
                         
                 # Get a name for SkuId, AppId.        
                 kmsdb = kmsDB2Dict()
