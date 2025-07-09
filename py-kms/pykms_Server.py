@@ -481,7 +481,7 @@ def server_main_terminal():
 
 class kmsServerHandler(socketserver.BaseRequestHandler):
         def setup(self):
-                loggersrv.info("Connection accepted: %s:%d" %(self.client_address[0], self.client_address[1]))
+                # loggersrv.info("Connection accepted: %s:%d" %(self.client_address[0], self.client_address[1]))
                 srv_config['raddr'] = str(self.client_address[0])
 
         def handle(self):
@@ -533,7 +533,7 @@ class kmsServerHandler(socketserver.BaseRequestHandler):
 
         def finish(self):
                 self.request.close()
-                loggersrv.info("Connection closed: %s:%d" %(self.client_address[0], self.client_address[1]))
+                # loggersrv.info("Connection closed: %s:%d" %(self.client_address[0], self.client_address[1]))
 
 
 serverqueue = Queue.Queue(maxsize = 0)
