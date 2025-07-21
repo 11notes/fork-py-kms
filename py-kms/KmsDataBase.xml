@@ -107,6 +107,10 @@
 			<Activate KmsItem="c052f164-cdf6-409a-a0cb-853ba0f0f55a" />
 		</CsvlkItem>
 
+    <CsvlkItem DisplayName="Windows Server 2025 Datacenter: Azure Edition" VlmcsdIndex="0" GroupId="206" MinKeyId="551000000" MaxKeyId="570999999" IniFileName="Windows" Id="c2e946d1-cfa2-4523-8c87-30bc696ee584" InvalidWinBuild="[0,1,2]">
+      <Activate KmsItem="c2e946d1-cfa2-4523-8c87-30bc696ee584" />
+    </CsvlkItem>
+
 		<CsvlkItem DisplayName="Windows Server 2025 Standard" VlmcsdIndex="0" GroupId="206" MinKeyId="551000000" MaxKeyId="570999999" IniFileName="Windows" Id="7dc26449-db21-4e09-ba37-28f2958506a6" InvalidWinBuild="[0,1,2]">
 			<Activate KmsItem="7dc26449-db21-4e09-ba37-28f2958506a6" />
 		</CsvlkItem>
@@ -590,7 +594,11 @@
 
 			<KmsItem DisplayName="Windows Server 2025 Standard" Id="7dc26449-db21-4e09-ba37-28f2958506a6" DefaultKmsProtocol="6.0" NCountPolicy="5">
 				<SkuItem DisplayName="Windows Server 2025 Standard" Id="7dc26449-db21-4e09-ba37-28f2958506a6" Gvlk="TVRH6-WHNXV-R9WG3-9XRFY-MY832" />
-			</KmsItem>			
+			</KmsItem>		
+
+      <KmsItem DisplayName="Windows Server 2025 Datacenter: Azure Edition" Id="c2e946d1-cfa2-4523-8c87-30bc696ee584" DefaultKmsProtocol="6.0" NCountPolicy="5">
+        <SkuItem DisplayName="Windows Server 2025 Datacenter: Azure Edition" Id="c2e946d1-cfa2-4523-8c87-30bc696ee584" Gvlk="XGN3F-F394H-FD2MY-PP6FD-8MCRC" />
+      </KmsItem>	
 			
 			<KmsItem DisplayName="Windows Server 2022 Datacenter" Id="ef6cfc9f-8c5d-44ac-9aad-de6a2ea0ae03" DefaultKmsProtocol="6.0" NCountPolicy="5">
 				<SkuItem DisplayName="Windows Server 2022 Datacenter" Id="ef6cfc9f-8c5d-44ac-9aad-de6a2ea0ae03" Gvlk="WX4NM-KYWYW-QJJR4-XV3QB-6VM33" />
